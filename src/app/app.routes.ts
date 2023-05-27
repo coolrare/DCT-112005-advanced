@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,7 @@ export const routes: Routes = [
       },
       {
         path: 'charts',
+        canActivate: [authGuard],
         // component: ChartsComponent
         loadComponent: () =>
           import('./charts/charts.component').then((c) => c.ChartsComponent),
