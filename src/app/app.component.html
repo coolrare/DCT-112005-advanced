@@ -56,7 +56,15 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" routerLink="/utilities">Utilities</a>
-            <a class="collapse-item" routerLink="/utilities/colors">Colors</a>
+            <a
+              *ngFor="let type of types"
+              class="collapse-item"
+              [routerLink]="['/utilities', type]">
+              Color (Type {{ type }})
+            </a>
+            <!-- <a class="collapse-item" routerLink="/utilities/colors">Colors</a>
+            <a class="collapse-item" routerLink="/utilities/colors/1">Colors (Type 1)</a>
+            <a class="collapse-item" routerLink="/utilities/colors/2">Colors (Type 2)</a> -->
             <a class="collapse-item" routerLink="/utilities/borders">Borders</a>
             <a class="collapse-item" routerLink="/utilities/animations">Animations</a>
             <a class="collapse-item" routerLink="/utilities/other">Other</a>

@@ -13,6 +13,7 @@ import { chartAreaDemo } from './chart-area-demo';
 })
 export class AppComponent implements OnInit {
   title = 'demo2';
+  types = ['', '1', '2'];
 
   ngOnInit(): void {
     chartPieDemo();

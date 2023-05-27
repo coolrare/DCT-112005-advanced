@@ -39,6 +39,10 @@ export const routes: Routes = [
         component: ColorsComponent
       },
       {
+        path: 'colors/:type', // colors/(.), 如果是 colors/ 比對不會成功
+        component: ColorsComponent
+      },
+      {
         path: 'animations',
         component: AnimationsComponent
       },
