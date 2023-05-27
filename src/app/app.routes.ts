@@ -47,6 +47,10 @@ export const routes: Routes = [
         component: AnimationsComponent
       },
       {
+        path: 'animations/:type',
+        component: AnimationsComponent
+      },
+      {
         path: 'borders',
         component: BordersComponent
       },
