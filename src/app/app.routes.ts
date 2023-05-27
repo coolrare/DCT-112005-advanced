@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { authGuard } from './auth.guard';
+import { loginGuard } from './login.guard';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canDeactivate: [loginGuard],
     loadComponent: () => import('./login/login.component').then((l) => l.LoginComponent),
   },
   {
