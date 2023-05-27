@@ -31,7 +31,7 @@
            </tr>
          </tfoot>
          <tbody>
-           <tr *ngFor="let item of data">
+           <tr *ngFor="let item of data$ | async">
              <td>{{ item.Name }}</td>
              <td>System Architect</td>
              <td>Edinburgh</td>
