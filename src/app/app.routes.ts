@@ -1,73 +1,45 @@
 import { Routes } from '@angular/router';
-import { ChartsComponent } from './charts/charts.component';
-import { TablesComponent } from './tables/tables.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { AnimationsComponent } from './utilities/animations/animations.component';
-import { BordersComponent } from './utilities/borders/borders.component';
-import { OtherComponent } from './utilities/other/other.component';
-import { ColorsComponent } from './utilities/colors/colors.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'charts',
-    component: ChartsComponent
+    // component: ChartsComponent
+    loadComponent: () =>
+      import('./charts/charts.component').then((c) => c.ChartsComponent),
   },
   {
     path: 'tables',
-    component: TablesComponent
+    loadComponent: () =>
+      import('./tables/tables.component').then((t) => t.TablesComponent),
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    loadComponent: () => import('./dashboard/dashboard.component'),
   },
   {
     path: 'utilities', // utilities/*
-    children: [
-      {
-        path:'',
-        redirectTo: 'other',
-        pathMatch: 'full'
-      },
-      {
-        path: 'colors',
-        component: ColorsComponent
-      },
-      {
-        path: 'colors/:type', // colors/(.), 如果是 colors/ 比對不會成功
-        component: ColorsComponent
-      },
-      {
-        path: 'animations',
-        component: AnimationsComponent
-      },
-      {
-        path: 'animations/:type',
-        component: AnimationsComponent
-      },
-      {
-        path: 'borders',
-        component: BordersComponent
-      },
-      {
-        path: 'other',
-        component: OtherComponent
-      }
-    ]
+    loadChildren: () => import('./utilities/utilities.routes'),
+  },
+  {
+    path: 'demo',
+    loadComponent: () =>
+      import('./demo/demo.component').then((d) => d.DemoComponent),
   },
   {
     path: 'not-found',
-    component: NotFoundComponent
+    loadComponent: () =>
+      import('./not-found/not-found.component').then(
+        (n) => n.NotFoundComponent
+      ),
   },
   {
     path: '**',
     redirectTo: 'not-found',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
-
 ];

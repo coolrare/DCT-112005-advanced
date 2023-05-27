@@ -11,7 +11,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export default class DashboardComponent implements OnInit {
   router = inject(Router);
 
   ngOnInit(): void {
