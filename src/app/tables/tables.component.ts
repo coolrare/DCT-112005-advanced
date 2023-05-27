@@ -17,10 +17,13 @@ export class TablesComponent implements OnInit {
   data: TableItem[] = [];
 
   ngOnInit(): void {
+    // ?a=b&c=d
     this.route.queryParamMap.subscribe((params) => {
       console.log(params.get('num'));
+      const num = +(params.get('num') || '10');
       this.httpClient.get<TableItem[]>('https://run.mocky.io/v3/53923ca1-98ac-4ce3-a47c-b0af3108de3e').subscribe(result => {
-        this.data = result.slice(0, +(params.get('num') || '10'));
+        // this.data = result.slice(0, +(params.get('num') || '10'));
+        this.data = result.slice(0, num);
       });
     });
   }
