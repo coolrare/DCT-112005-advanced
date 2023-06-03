@@ -23,6 +23,9 @@ export class LoginComponent {
   }
 
   loginSubmit(event: any, loginUser: any) {
+    if(this.form?.invalid) {
+      return
+    }
     console.log(event);
     console.log(loginUser);
   }

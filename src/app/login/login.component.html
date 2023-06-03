@@ -12,7 +12,11 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-                <form class="user" #tForm="ngForm" (ngSubmit)="loginSubmit($event, tForm.value)">
+                <form
+                  class="user"
+                  #tForm="ngForm"
+                  (ngSubmit)="loginSubmit($event, tForm.value)"
+                >
                   <div class="form-group">
                     <input
                       name="email"
@@ -23,8 +27,25 @@
                       id="exampleInputEmail"
                       aria-describedby="emailHelp"
                       placeholder="Enter Email Address..."
+                      required
+                      email
                     />
+                    <div *ngIf="tEmail.invalid">
+                      <p *ngIf="tEmail.hasError('required')">
+                        Email is required
+                      </p>
+                      <p *ngIf="tEmail.hasError('email')">Email is invalid</p>
+                    </div>
+
                     <p>tEmail.value = {{ tEmail.value }}</p>
+                    <p>tEmail.valid = {{ tEmail.valid }}</p>
+                    <p>tEmail.invalid = {{ tEmail.invalid }}</p>
+                    <p>tEmail.touched = {{ tEmail.touched }}</p>
+                    <p>tEmail.untouched = {{ tEmail.untouched }}</p>
+                    <p>tEmail.pristine = {{ tEmail.pristine }}</p>
+                    <p>tEmail.dirty = {{ tEmail.dirty }}</p>
+                    <p>tEmail.errors</p>
+                    <pre>{{ tEmail.errors | json }}</pre>
                   </div>
                   <div class="form-group">
                     <input
@@ -35,7 +56,28 @@
                       class="form-control form-control-user"
                       id="exampleInputPassword"
                       placeholder="Password"
+                      required
+                      minlength="6"
                     />
+                    <div *ngIf="tPassword.invalid">
+                      <p *ngIf="tPassword.hasError('required')">
+                        Password is required
+                      </p>
+                      <p *ngIf="tPassword.hasError('minlength')">
+                        <span>Password length</span>
+                        <span>{{
+                          tPassword.getError("minlength").actualLength
+                        }}</span>
+                        <span>/</span>
+                        <span>{{
+                          tPassword.getError("minlength").requiredLength
+                        }}</span>
+                      </p>
+                      <pre *ngIf="tPassword.hasError('minlength')">
+                        {{ tPassword.getError("minlength") | json }}
+                      </pre>
+                    </div>
+
                     <p>tPassword = {{ tPassword.value }}</p>
                   </div>
                   <div class="form-group">
@@ -69,15 +111,30 @@
                       >
                     </div>
                   </div>
-                  <pre>{{ tForm.value | json}}</pre>
-                  <button
+                  <pre>{{ tForm.value | json }}</pre>
+                  <!-- <button
                     type="submit"
                     [disabled]="!tAgreement.value"
+                    (click)="login(tForm.value)"
+                    class="btn btn-primary btn-user btn-block"
+                  > -->
+                  <button
+                    type="submit"
+                    [disabled]="tForm.invalid"
                     (click)="login(tForm.value)"
                     class="btn btn-primary btn-user btn-block"
                   >
                     Login
                   </button>
+                  <p>tForm.value = {{ tForm.value | json }}</p>
+                  <p>tForm.valid = {{ tForm.valid }}</p>
+                  <p>tForm.invalid = {{ tForm.invalid }}</p>
+                  <p>tForm.touched = {{ tForm.touched }}</p>
+                  <p>tForm.untouched = {{ tForm.untouched }}</p>
+                  <p>tForm.pristine = {{ tForm.pristine }}</p>
+                  <p>tForm.dirty = {{ tForm.dirty }}</p>
+                  <p>tForm.errors</p>
+                  <pre>{{ tForm.errors | json }}</pre>
                   <hr />
                   <a
                     href="index.html"
