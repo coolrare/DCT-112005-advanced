@@ -19,6 +19,20 @@
                 >
                   <div class="form-group">
                     <input
+                      name="name"
+                      #tName="ngModel"
+                      ngModel
+                      type="text"
+                      class="form-control form-control-user"
+                      placeholder="Name"
+                      required
+                      forbiddenName="[Mm]ike"
+                      />
+
+                    <pre>{{ tName.errors | json }}</pre>
+                  </div>
+                  <div class="form-group">
+                    <input
                       name="email"
                       #tEmail="ngModel"
                       ngModel
@@ -138,7 +152,7 @@
                   <div>tForm.value</div>
                   <pre>{{ tForm.value | json }}</pre>
                   <div>tForm.control.getRawValue()</div>
-                  <pre>{{ tForm.control.getRawValue() | json}}</pre>
+                  <pre>{{ tForm.control.getRawValue() | json }}</pre>
 
                   <!-- <button
                     type="submit"

@@ -2,11 +2,12 @@ import { AfterViewInit, Component, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import { ForbiddenNameDirective } from '../forbidden-name.directive';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ForbiddenNameDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
