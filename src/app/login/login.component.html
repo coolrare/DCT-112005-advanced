@@ -80,6 +80,29 @@
 
                     <p>tPassword = {{ tPassword.value }}</p>
                   </div>
+                  <div ngModelGroup="profile">
+                    <div class="form-group">
+                      <input
+                        disabled
+                        name="firstName"
+                        ngModel="Mike"
+                        type="text"
+                        class="form-control form-control-user"
+                        placeholder="First Name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        disabled
+                        name="lastName"
+                        ngModel="Huang"
+                        type="text"
+                        class="form-control form-control-user"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
                       <input
