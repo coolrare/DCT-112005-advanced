@@ -134,7 +134,12 @@
                       >
                     </div>
                   </div>
+
+                  <div>tForm.value</div>
                   <pre>{{ tForm.value | json }}</pre>
+                  <div>tForm.control.getRawValue()</div>
+                  <pre>{{ tForm.control.getRawValue() | json}}</pre>
+
                   <!-- <button
                     type="submit"
                     [disabled]="!tAgreement.value"
