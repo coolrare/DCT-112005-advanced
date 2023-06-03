@@ -8,7 +8,7 @@
           <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
           </div>
-          <form class="user" [formGroup]="form">
+          <form class="user" [formGroup]="form" (ngSubmit)="register()">
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <input
@@ -39,7 +39,7 @@
                 placeholder="Email Address"
               />
             </div>
-            <div class="form-group row">
+            <div class="form-group row" [formGroup]="form.controls.password">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <input
                   formControlName="password"
@@ -59,8 +59,35 @@
                 />
               </div>
             </div>
+            <div class="form-group row" formArrayName="skills">
+              <div
+                class="col-sm-6 mb-3 mb-sm-0"
+                *ngFor="
+                  let _ of form.controls.skills.controls;
+                  let index = index
+                "
+              >
+                <!-- form.skills[index] -->
+                <input
+                  [formControlName]="index"
+                  type="text"
+                  class="form-control form-control-user"
+                />
+              </div>
+            </div>
+            <!-- 不使用 formArrayName 的做法，直接拿 control 來用 -->
+            <!-- <div class="form-group row" formArrayName="skills">
+              <div class="col-sm-6 mb-3 mb-sm-0" *ngFor="let control of form.controls.skills.controls">
+                <input
+                [formControl]="control"
+                type="text"
+                class="form-control form-control-user"
+              />
+              </div>
+            </div> -->
+            <pre>{{ form.value | json }}</pre>
             <button
-              (click)="register()"
+              [disabled]="formSubmitted"
               class="btn btn-primary btn-user btn-block"
             >
               Register Account
