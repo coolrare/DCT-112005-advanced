@@ -36,5 +36,9 @@ export class LoginComponent implements AfterViewInit {
     }
     console.log(event);
     console.log(loginUser);
+
+    setTimeout(() => {
+      this.form?.resetForm();
+    }, 3000);
   }
 }
