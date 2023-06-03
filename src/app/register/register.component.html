@@ -25,6 +25,9 @@
                   {{ form.controls.firstName.hasError("required") }}
                 </p>
                 <div *ngIf="form.controls.firstName.invalid">
+
+                  <pre>{{ form.controls.firstName.errors | json }}</pre>
+
                   <div *ngIf="form.controls.firstName.hasError('required')">
                     First Name is required
                   </div>
@@ -154,6 +157,9 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="form-group row" *ngIf="form.controls.password.invalid">
+              <pre>{{ form.controls.password.errors | json }}</pre>
             </div>
             <div class="form-group row" formArrayName="skills">
               <div

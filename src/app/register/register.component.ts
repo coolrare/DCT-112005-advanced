@@ -7,10 +7,9 @@ import {
   FormControl,
   FormArray,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
-
-// const passwordValidator = [Validators.required, Validators.minLength(6)];
-const passwordValidator = Validators.compose([Validators.required, Validators.minLength(6)]);
+import { forbiddenNameValidator, forbiddenNameValidator2, confirmPasswordValidator, passwordValidator } from '../custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -24,13 +23,13 @@ export class RegisterComponent {
   formBuilder = inject(FormBuilder);
 
   form = this.formBuilder.group({
-    firstName: this.formBuilder.control('Mike', Validators.required),
-    lastName: this.formBuilder.control('Huang', Validators.required),
+    firstName: this.formBuilder.control('Mike', [Validators.required, forbiddenNameValidator]),
+    lastName: this.formBuilder.control('Huang', [Validators.required, forbiddenNameValidator2(/Mike/)]),
     email: this.formBuilder.control('', Validators.email),
     password: this.formBuilder.group({
       password: this.formBuilder.control('', passwordValidator),
       confirmPassword: this.formBuilder.control('', passwordValidator),
-    }),
+    }, { validators: confirmPasswordValidator }),
     skills: this.formBuilder.array([
       this.formBuilder.control('HTML'),
       this.formBuilder.control('CSS'),
