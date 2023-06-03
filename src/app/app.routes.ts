@@ -38,6 +38,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./demo/demo.component').then((d) => d.DemoComponent),
       },
+
       {
         path: 'not-found',
         loadComponent: () =>
@@ -45,12 +46,18 @@ export const routes: Routes = [
             (n) => n.NotFoundComponent
           ),
       },
-    ]
+    ],
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./register/register.component').then((r) => r.RegisterComponent),
   },
   {
     path: 'login',
     canDeactivate: [loginGuard],
-    loadComponent: () => import('./login/login.component').then((l) => l.LoginComponent),
+    loadComponent: () =>
+      import('./login/login.component').then((l) => l.LoginComponent),
   },
   {
     path: '**',
