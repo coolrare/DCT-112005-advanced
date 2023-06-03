@@ -5,8 +5,8 @@ export const loginGuard: CanDeactivateFn<LoginComponent> = (component, currentRo
 
   console.log(component.form?.dirty);
   if(component.form?.dirty) {
-    return false;
+    return true;
   }
 
-  return true;
+  return false;
 };

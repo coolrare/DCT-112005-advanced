@@ -14,7 +14,9 @@ export class LoginComponent {
   @ViewChild(NgForm) form?: NgForm;
   router = inject(Router);
 
-  login() {
+  login(loginUser: any) {
+    // TODO: 送出 API
+    console.log(loginUser);
     localStorage.setItem('token', 'xxxx');
     this.router.navigateByUrl('/');
   }
