@@ -17,7 +17,13 @@ export class LoginComponent {
   login(loginUser: any) {
     // TODO: 送出 API
     console.log(loginUser);
+    console.log(this.form?.value);
     localStorage.setItem('token', 'xxxx');
-    this.router.navigateByUrl('/');
+    // this.router.navigateByUrl('/');
+  }
+
+  loginSubmit(event: any, loginUser: any) {
+    console.log(event);
+    console.log(loginUser);
   }
 }
