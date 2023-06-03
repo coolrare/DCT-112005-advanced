@@ -1,18 +1,26 @@
-import { Component, ViewChild, inject } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { AfterViewInit, Component, ViewChild, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
   @ViewChild(NgForm) form?: NgForm;
+  @ViewChild('tEmail') tEmail?: NgModel;
+
   router = inject(Router);
+
+  ngAfterViewInit(): void {
+    this.tEmail?.valueChanges?.subscribe((value) => {
+      console.log(value);
+    });
+  }
 
   login(loginUser: any) {
     // TODO: 送出 API
@@ -23,8 +31,8 @@ export class LoginComponent {
   }
 
   loginSubmit(event: any, loginUser: any) {
-    if(this.form?.invalid) {
-      return
+    if (this.form?.invalid) {
+      return;
     }
     console.log(event);
     console.log(loginUser);
