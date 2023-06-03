@@ -18,7 +18,17 @@
                   id="exampleFirstName"
                   placeholder="First Name"
                 />
-                {{ form.controls.firstName.value }}
+                <p>firstName: {{ form.controls.firstName.value }}</p>
+                <p>firstName invalid: {{ form.controls.firstName.invalid }}</p>
+                <p>
+                  firstName hasError('required'):
+                  {{ form.controls.firstName.hasError("required") }}
+                </p>
+                <div *ngIf="form.controls.firstName.invalid">
+                  <div *ngIf="form.controls.firstName.hasError('required')">
+                    First Name is required
+                  </div>
+                </div>
               </div>
               <div class="col-sm-6">
                 <input
@@ -28,6 +38,11 @@
                   id="exampleLastName"
                   placeholder="Last Name"
                 />
+                <div *ngIf="form.controls.lastName.invalid">
+                  <div *ngIf="form.controls.lastName.hasError('required')">
+                    Last Name is required
+                  </div>
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -38,6 +53,11 @@
                 id="exampleInputEmail"
                 placeholder="Email Address"
               />
+              <div *ngIf="form.controls.email.invalid">
+                <div *ngIf="form.controls.email.hasError('email')">
+                  Email is invalid
+                </div>
+              </div>
             </div>
             <div class="form-group row" [formGroup]="form.controls.password">
               <div class="col-sm-6 mb-3 mb-sm-0">
@@ -48,6 +68,42 @@
                   id="exampleInputPassword"
                   placeholder="Password"
                 />
+                <div *ngIf="form.controls.password.controls.password.invalid">
+                  <div
+                    *ngIf="
+                      form.controls.password.controls.password.hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    Password is required
+                  </div>
+                  <div
+                    *ngIf="
+                      form.controls.password.controls.password.hasError(
+                        'minlength'
+                      )
+                    "
+                  >
+                    <span>Password must be at least</span>
+                    <span>
+                      {{
+                        form.controls.password.controls.password.getError(
+                          "minlength"
+                        ).requiredLength
+                      }}
+                    </span>
+                    <span>characters (current:</span>
+                    <span>
+                      {{
+                        form.controls.password.controls.password.getError(
+                          "minlength"
+                        ).actualLength
+                      }}
+                    </span>
+                    <span>)</span>
+                  </div>
+                </div>
               </div>
               <div class="col-sm-6">
                 <input
@@ -57,6 +113,46 @@
                   id="exampleRepeatPassword"
                   placeholder="Repeat Password"
                 />
+                <div
+                  *ngIf="
+                    form.controls.password.controls.confirmPassword.invalid
+                  "
+                >
+                  <div
+                    *ngIf="
+                      form.controls.password.controls.confirmPassword.hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    Repeat Password is required
+                  </div>
+                  <div
+                    *ngIf="
+                      form.controls.password.controls.confirmPassword.hasError(
+                        'minlength'
+                      )
+                    "
+                  >
+                  <span>Repeat Password must be at least</span>
+                  <span>
+                    {{
+                      form.controls.password.controls.confirmPassword.getError(
+                        "minlength"
+                      ).requiredLength
+                    }}
+                  </span>
+                  <span>characters (current:</span>
+                  <span>
+                    {{
+                      form.controls.password.controls.confirmPassword.getError(
+                        "minlength"
+                      ).actualLength
+                    }}
+                  </span>
+                  <span>)</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="form-group row" formArrayName="skills">

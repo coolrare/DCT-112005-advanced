@@ -6,7 +6,12 @@ import {
   FormGroup,
   FormControl,
   FormArray,
+  Validators,
 } from '@angular/forms';
+
+// const passwordValidator = [Validators.required, Validators.minLength(6)];
+const passwordValidator = Validators.compose([Validators.required, Validators.minLength(6)]);
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -19,12 +24,12 @@ export class RegisterComponent {
   formBuilder = inject(FormBuilder);
 
   form = this.formBuilder.group({
-    firstName: this.formBuilder.control('Mike'),
-    lastName: this.formBuilder.control('Huang'),
-    email: this.formBuilder.control(''),
+    firstName: this.formBuilder.control('Mike', Validators.required),
+    lastName: this.formBuilder.control('Huang', Validators.required),
+    email: this.formBuilder.control('', Validators.email),
     password: this.formBuilder.group({
-      password: this.formBuilder.control(''),
-      confirmPassword: this.formBuilder.control(''),
+      password: this.formBuilder.control('', passwordValidator),
+      confirmPassword: this.formBuilder.control('', passwordValidator),
     }),
     skills: this.formBuilder.array([
       this.formBuilder.control('HTML'),
